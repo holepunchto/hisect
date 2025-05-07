@@ -10,6 +10,7 @@
   "description": "",
   "devDependencies": {
     "b4a": "^1.6.7",
+    "brittle": "^3.16.2",
     "hypercore": "^11.6.3",
     "standard": "^17.1.2"
   }
