@@ -1,0 +1,16 @@
+{
+  "name": "hypercore-bisect",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "holepunchto",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "b4a": "^1.6.7",
+    "hypercore": "^11.6.3",
+    "standard": "^17.1.2"
+  }
+}
