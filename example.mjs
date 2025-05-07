@@ -5,9 +5,9 @@ import b4a from 'b4a'
 const core = new Hypercore('./core')
 await core.ready()
 
-// for (let x = 0; x <= 10000; x++) {
-//   await core.append(b4a.from(`${x}`))
-// }
+for (let x = 0; x <= 10000; x++) {
+  await core.append(b4a.from(`${x}`))
+}
 
 async function startLogging (core, since) {
   const startIndex = await bisect(core, (block) => {
@@ -22,5 +22,4 @@ async function startLogging (core, since) {
   }
 }
 
-await startLogging(core, 100001)
-console.log(await core.get(130013))
+await startLogging(core, 9000)
