@@ -11,15 +11,19 @@ for (let x = 0; x <= 10000; x++) {
 
 async function startLogging (core, since) {
   const startIndex = await bisect(core, (block) => {
-    return block < since ? -1 : 1
+    const value = Number(b4a.toString(block))
+    if (value < since) return -1
+    if (value > since) return 1
+    return 0
   })
 
   console.log('Start index: ', startIndex)
-  const stream = core.createReadStream({ start: startIndex })
+  if (startIndex === -1) return
 
+  const stream = core.createReadStream({ start: startIndex })
   for await (const entry of stream) {
     console.log(b4a.toString(entry))
   }
 }
 
-await startLogging(core, 9000)
+await startLogging(core, 9999)

@@ -14,7 +14,14 @@ async function bisect (core, cmp) {
     }
   }
 
-  return low
+  if (low < core.length) {
+    const block = await core.get(low)
+    if (cmp(block) === 0) {
+      return low
+    }
+  }
+
+  return -1
 }
 
 module.exports = bisect
