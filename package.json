@@ -2,12 +2,12 @@
   "name": "hypercore-bisect",
   "version": "0.0.1",
   "main": "index.js",
+  "description": "Binary search for Hypercore",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx standard && node test.js"
   },
-  "author": "holepunchto",
-  "license": "ISC",
-  "description": "",
+  "author": "Holepunch",
+  "license": "Apache-2.0",
   "devDependencies": {
     "b4a": "^1.6.7",
     "brittle": "^3.16.2",
