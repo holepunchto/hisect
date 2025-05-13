@@ -1,4 +1,4 @@
-async function bisect (core, cmp) {
+async function hisect (core, cmp) {
   let low = 0
   let high = core.length
 
@@ -24,4 +24,4 @@ async function bisect (core, cmp) {
   return -1
 }
 
-module.exports = bisect
+module.exports = hisect

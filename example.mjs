@@ -1,4 +1,4 @@
-import bisect from './index.js'
+import hisect from './index.js'
 import Hypercore from 'hypercore'
 import b4a from 'b4a'
 
@@ -10,7 +10,7 @@ for (let x = 0; x <= 10000; x++) {
 }
 
 async function startLogging (core, since) {
-  const startIndex = await bisect(core, (block) => {
+  const startIndex = await hisect(core, (block) => {
     const value = Number(b4a.toString(block))
     if (value < since) return -1
     if (value > since) return 1

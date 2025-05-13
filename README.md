@@ -1,17 +1,17 @@
-# hypercore-bisect
+# hisect
 
 Binary search on a Hypercore.
 
 Pass a comparator. Gets you the index of the first block that matches, or -1 if not found.
 
 ```js
-npm install bisect-core
+npm install hisect
 ```
 
 ## Usage
 
 ```js
-import bisect from 'hypercore-bisect'
+import hisect from 'hisect'
 import Hypercore from 'hypercore'
 import b4a from 'b4a'
 
@@ -22,7 +22,7 @@ for (let i = 0; i <= 10000; i++) {
   await core.append(b4a.from(`${i}`))
 }
 
-const index = await bisect(core, (block) => {
+const index = await hisect(core, (block) => {
   const n = Number(b4a.toString(block))
   if (n < 9999) return -1
   if (n > 9999) return 1
@@ -43,7 +43,7 @@ for await (const data of stream) {
 ## API
 
 ```js
-const index = await bisect(core, compare)
+const index = await hisect(core, compare)
 ```
 Does a binary search over the blocks in core. compare is a sync function that receives the block and should return:
 
