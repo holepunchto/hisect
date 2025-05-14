@@ -1,5 +1,5 @@
 {
-  "name": "hisect",
+  "name": "@holepunchto/hisect",
   "version": "0.0.1",
   "main": "index.js",
   "description": "Binary search for Hypercore",
@@ -8,6 +8,10 @@
   },
   "author": "Holepunch",
   "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/holepunchto/hisect/issues"
+  },
+  "homepage": "https://github.com/holepunchto/hisect/",
   "devDependencies": {
     "b4a": "^1.6.7",
     "brittle": "^3.16.2",
