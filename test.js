@@ -44,3 +44,63 @@ test('works when match is at the start', async (t) => {
   const index = await hisect(core, val => Number(val) - 5)
   t.is(index, 0)
 })
+
+test('hisect.lt returns index of value less than target', async (t) => {
+  const core = new Hypercore(await t.tmp(), { valueEncoding: 'utf-8' })
+  await core.ready()
+  await core.append(['2', '4', '6', '8'])
+  const index = await hisect.lt(core, 6)
+  t.is(index, 1)
+})
+
+test('hisect.lte returns index of value less than or equal to target', async (t) => {
+  const core = new Hypercore(await t.tmp(), { valueEncoding: 'utf-8' })
+  await core.ready()
+  await core.append(['2', '4', '8'])
+  const index = await hisect.lte(core, 6)
+  t.is(index, 1)
+})
+
+test('hisect.lte returns index of value less than or equal to target (exact match)', async (t) => {
+  const core = new Hypercore(await t.tmp(), { valueEncoding: 'utf-8' })
+  await core.ready()
+  await core.append(['2', '4', '6', '8'])
+  const index = await hisect.lte(core, 6)
+  t.is(index, 2)
+})
+
+test('hisect.eq returns index of value equal to target or -1', async (t) => {
+  const core = new Hypercore(await t.tmp(), { valueEncoding: 'utf-8' })
+  await core.ready()
+  await core.append(['1', '3', '5', '7', '9'])
+  const index = await hisect.eq(core, 5)
+  t.is(index, 2)
+
+  const indexNotFound = await hisect.eq(core, 6)
+  t.is(indexNotFound, -1)
+})
+
+test('hisect.gt returns index of value greater than target', async (t) => {
+  const core = new Hypercore(await t.tmp(), { valueEncoding: 'utf-8' })
+  await core.ready()
+  await core.append(['1', '3', '5', '7', '9'])
+  const index = await hisect.gt(core, 5)
+  t.is(index, 3)
+
+  const indexNotFound = await hisect.gt(core, 10)
+  t.is(indexNotFound, -1)
+})
+
+test('hisect.gte returns index of value greater than or equal to target', async (t) => {
+  const core = new Hypercore(await t.tmp(), { valueEncoding: 'utf-8' })
+  await core.ready()
+  await core.append(['1', '3', '5', '7', '9'])
+  const index = await hisect.gte(core, 5)
+  t.is(index, 2)
+
+  const indexGreater = await hisect.gte(core, 6)
+  t.is(indexGreater, 3)
+
+  const indexNotFound = await hisect.gte(core, 10)
+  t.is(indexNotFound, -1)
+})

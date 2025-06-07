@@ -54,3 +54,13 @@ Does a binary search over the blocks in core. compare is a sync function that re
 - 0 if it's a match
 
 Returns the index of the first matching block. If there's no match, returns -1.
+
+#### `hisect.lte`
+
+#### `hisect.lt`
+
+#### `hisect.gte`
+
+#### `hisect.gt`
+
+#### `hisect.eq`
