@@ -63,4 +63,3 @@ Returns the index of the first matching block. If there's no match, returns -1.
 
 #### `hisect.gt`
 
-#### `hisect.eq`
