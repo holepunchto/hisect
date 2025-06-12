@@ -1,5 +1,3 @@
-const b4a = require('b4a')
-
 async function hisect (core, cmp) {
   let low = 0
   let high = core.length
@@ -128,15 +126,6 @@ hisect.lte = async (core, cmp) => {
   }
 
   return -1
-}
-
-hisect.eq = async (core, since) => {
-  return await hisect(core, (block) => {
-    const value = Buffer.isBuffer(block) ? Number(b4a.toString(block)) : Number(block)
-    if (value < since) return -1
-    if (value > since) return 1
-    return 0
-  })
 }
 
 module.exports = hisect
