@@ -1,4 +1,4 @@
-async function hisect (core, cmp) {
+async function hisect (core, target, cmp) {
   let low = 0
   let high = core.length
 
@@ -6,7 +6,7 @@ async function hisect (core, cmp) {
     const mid = Math.floor((low + high) / 2)
     const block = await core.get(mid)
 
-    const res = cmp(block)
+    const res = cmp(target, block)
     if (res < 0) {
       low = mid + 1
     } else {
@@ -16,7 +16,7 @@ async function hisect (core, cmp) {
 
   if (low < core.length) {
     const block = await core.get(low)
-    if (cmp(block) === 0) {
+    if (cmp(target, block) === 0) {
       return low
     }
   }
@@ -24,7 +24,7 @@ async function hisect (core, cmp) {
   return -1
 }
 
-hisect.gte = async (core, cmp) => {
+hisect.gte = async (core, target, cmp) => {
   let low = 0
   let high = core.length
 
@@ -32,7 +32,7 @@ hisect.gte = async (core, cmp) => {
     const mid = Math.floor((low + high) / 2)
     const block = await core.get(mid)
 
-    const res = cmp(block)
+    const res = cmp(target, block)
     if (res < 0) {
       low = mid + 1
     } else {
@@ -42,7 +42,7 @@ hisect.gte = async (core, cmp) => {
 
   if (low < core.length) {
     const block = await core.get(low)
-    if (cmp(block) >= 0) {
+    if (cmp(target, block) >= 0) {
       return low
     }
   }
@@ -50,7 +50,7 @@ hisect.gte = async (core, cmp) => {
   return -1
 }
 
-hisect.gt = async (core, cmp) => {
+hisect.gt = async (core, target, cmp) => {
   let low = 0
   let high = core.length
 
@@ -58,7 +58,7 @@ hisect.gt = async (core, cmp) => {
     const mid = Math.floor((low + high) / 2)
     const block = await core.get(mid)
 
-    const res = cmp(block)
+    const res = cmp(target, block)
     if (res <= 0) {
       low = mid + 1
     } else {
@@ -68,7 +68,7 @@ hisect.gt = async (core, cmp) => {
 
   if (low < core.length) {
     const block = await core.get(low)
-    if (cmp(block) > 0) {
+    if (cmp(target, block) > 0) {
       return low
     }
   }
@@ -76,7 +76,7 @@ hisect.gt = async (core, cmp) => {
   return -1
 }
 
-hisect.lt = async (core, cmp) => {
+hisect.lt = async (core, target, cmp) => {
   let low = 0
   let high = core.length
 
@@ -84,7 +84,7 @@ hisect.lt = async (core, cmp) => {
     const mid = Math.floor((low + high) / 2)
     const block = await core.get(mid)
 
-    const res = cmp(block)
+    const res = cmp(target, block)
     if (res < 0) {
       low = mid + 1
     } else {
@@ -94,7 +94,7 @@ hisect.lt = async (core, cmp) => {
 
   if (low > 0) {
     const block = await core.get(low - 1)
-    if (cmp(block) <= 0) {
+    if (cmp(target, block) <= 0) {
       return low - 1
     }
   }
@@ -102,7 +102,7 @@ hisect.lt = async (core, cmp) => {
   return -1
 }
 
-hisect.lte = async (core, cmp) => {
+hisect.lte = async (core, target, cmp) => {
   let low = 0
   let high = core.length
 
@@ -110,7 +110,7 @@ hisect.lte = async (core, cmp) => {
     const mid = Math.floor((low + high) / 2)
     const block = await core.get(mid)
 
-    const res = cmp(block)
+    const res = cmp(target, block)
     if (res > 0) {
       high = mid
     } else {
@@ -120,7 +120,7 @@ hisect.lte = async (core, cmp) => {
 
   if (low > 0) {
     const block = await core.get(low - 1)
-    if (cmp(block) <= 0) {
+    if (cmp(target, block) <= 0) {
       return low - 1
     }
   }
