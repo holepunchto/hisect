@@ -10,7 +10,7 @@ for (let x = 0; x <= 10000; x++) {
 }
 
 async function startLogging (core, since) {
-  const startIndex = await hisect(core, (block) => {
+  const startIndex = await hisect(core, since, (since, block) => {
     const value = Number(b4a.toString(block))
     if (value < since) return -1
     if (value > since) return 1

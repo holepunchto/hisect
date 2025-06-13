@@ -22,10 +22,11 @@ for (let i = 0; i <= 10000; i++) {
   await core.append(b4a.from(`${i}`))
 }
 
-const index = await hisect(core, (block) => {
-  const n = Number(b4a.toString(block))
-  if (n < 9999) return -1
-  if (n > 9999) return 1
+const since = 9999
+const index = await hisect(core, since, (since, block) => {
+  const value = Number(b4a.toString(block))
+  if (value < since) return -1
+  if (value > since) return 1
   return 0
 })
 
@@ -43,7 +44,7 @@ for await (const data of stream) {
 ## API
 
 ```js
-const index = await hisect(core, compare)
+const index = await hisect(core, target, compare)
 ```
 Does a binary search over the blocks in core. compare is a sync function that receives the block and should return:
 
@@ -54,3 +55,12 @@ Does a binary search over the blocks in core. compare is a sync function that re
 - 0 if it's a match
 
 Returns the index of the first matching block. If there's no match, returns -1.
+
+#### `hisect.lte`
+
+#### `hisect.lt`
+
+#### `hisect.gte`
+
+#### `hisect.gt`
+
